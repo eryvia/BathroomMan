@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8bcun4cl35wk"
-path="res://.godot/imported/door2_low_Круг_Roughness.jpg-446e332093ab0afd83dbd6d4f23d7e25.ctex"
+uid="uid://bkkp7dfay3ssq"
+path="res://.godot/imported/door2_low_Круг_Metallic.jpg-4abfb06b68559fc2af96ed060d748aae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://door/textures/door2_low_Круг_Roughness.jpg"
-dest_files=["res://.godot/imported/door2_low_Круг_Roughness.jpg-446e332093ab0afd83dbd6d4f23d7e25.ctex"]
+source_file="res://Entities/door/textures/door2_low_Круг_Metallic.jpg"
+dest_files=["res://.godot/imported/door2_low_Круг_Metallic.jpg-4abfb06b68559fc2af96ed060d748aae.ctex"]
 
 [params]
 

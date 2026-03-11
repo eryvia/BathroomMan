@@ -7,7 +7,7 @@ extends CharacterBody3D
 
 @export var gravity := 24.0
 @export var jump_height := 1.2
-@export var run_speed := 1.6
+@export var run_speed := 2.2
 
 @export var coyote_time := 0.12         
 @export var jump_buffer_time := 0.12
@@ -75,7 +75,7 @@ func _physics_process(delta):
 	velocity.x = current_h.x
 	velocity.z = current_h.z
 
-	if not is_on_floor():
+	if not is_on_floor():   
 		velocity.y -= gravity * delta
 	else:
 		

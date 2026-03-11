@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cp1sl0k4a4lbq"
+path="res://.godot/imported/door2_low.obj-fca6235c3c11adb31e64349abdd18a1e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/door2_low.obj-fca6235c3c11adb31e64349abdd18a1e.mesh"]
+
+source_file="res://Entities/door/source/door2_low.obj"
+dest_files=["res://.godot/imported/door2_low.obj-fca6235c3c11adb31e64349abdd18a1e.mesh", "res://.godot/imported/door2_low.obj-fca6235c3c11adb31e64349abdd18a1e.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

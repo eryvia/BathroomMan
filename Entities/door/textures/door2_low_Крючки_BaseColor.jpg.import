@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm2dnmgw4nixd"
-path="res://.godot/imported/door2_low_Крючки_Normal.jpg-bf0440db2765feea623ba32a3b9f96ad.ctex"
+uid="uid://tkcjdef781wr"
+path="res://.godot/imported/door2_low_Крючки_BaseColor.jpg-d3fdc509bf7a28d5701ccc40cb5573aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://door/textures/door2_low_Крючки_Normal.jpg"
-dest_files=["res://.godot/imported/door2_low_Крючки_Normal.jpg-bf0440db2765feea623ba32a3b9f96ad.ctex"]
+source_file="res://Entities/door/textures/door2_low_Крючки_BaseColor.jpg"
+dest_files=["res://.godot/imported/door2_low_Крючки_BaseColor.jpg-d3fdc509bf7a28d5701ccc40cb5573aa.ctex"]
 
 [params]
 

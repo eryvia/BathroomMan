@@ -25,22 +25,8 @@ environment = SubResource("Environment_h2yge")
 transform = Transform3D(-0.012217023, -0.8069001, 0.5905616, 0, 0.5906057, 0.8069603, -0.9999254, 0.009858653, -0.0072154435, 0, 0, 0)
 shadow_enabled = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(0.8676501, 0, 0, 0, 0.36452517, 0, 0, 0, 0.8676501, 4.8491597, -0.59233236, 0.6243825)
-use_collision = true
-collision_mask = 2
-size = Vector3(23.08899, 1.1795211, 18.143509)
-
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9037548, 0)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.247251, 1.8063793, 5.930563)
-size = Vector3(1, 4.4764404, 7.7089844)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.156268, 1.7382202, -4.305871)
-size = Vector3(1, 4.4764404, 7.7089844)
 
 [node name="Door" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.214017, 1.6288452, 0.78271484)

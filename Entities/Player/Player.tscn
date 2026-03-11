@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyxrnj7qijt5c"]
+[gd_scene load_steps=5 format=3 uid="uid://cyxrnj7qijt5c"]
 
 [ext_resource type="Script" uid="uid://cvqkqyboqkw0a" path="res://Entities/Player/player.gd" id="1_e5kic"]
+[ext_resource type="Shader" uid="uid://d0ufkgigi3bec" path="res://Entities/Player/Player.gdshader" id="2_ww0jn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ww0jn"]
 radius = 0.7104492
 height = 2.6450195
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vweq0"]
+shader = ExtResource("2_ww0jn")
+shader_parameter/pixel_size = 3.0
+shader_parameter/dither_strength = 0.08
+shader_parameter/color_depth = 16.0
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
@@ -28,9 +35,10 @@ current = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 7.0
-offset_top = 1.0
-offset_right = 47.0
-offset_bottom = 24.0
-text = "120"
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_vweq0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 5.0
+offset_bottom = -2.0

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by01hylqqvfjn"
-path="res://.godot/imported/door2_low_основа_BaseColor.jpg-858183bca237e9071bcd0b333ee27fa1.ctex"
+uid="uid://dybchtd3nh2j3"
+path="res://.godot/imported/door2_low_основа_Normal.jpg-fe7404f8dcaccc3fdba7702a5d52ebf0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://door/textures/door2_low_основа_BaseColor.jpg"
-dest_files=["res://.godot/imported/door2_low_основа_BaseColor.jpg-858183bca237e9071bcd0b333ee27fa1.ctex"]
+source_file="res://Entities/door/textures/door2_low_основа_Normal.jpg"
+dest_files=["res://.godot/imported/door2_low_основа_Normal.jpg-fe7404f8dcaccc3fdba7702a5d52ebf0.ctex"]
 
 [params]
 
