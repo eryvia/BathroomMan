@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dweh0l26heiii"]
+[gd_scene format=3 uid="uid://dweh0l26heiii"]
 
 [ext_resource type="PackedScene" uid="uid://cyxrnj7qijt5c" path="res://Entities/Player/Player.tscn" id="1_0rwry"]
-[ext_resource type="PackedScene" uid="uid://b7gq5jrj2lhly" path="res://Entities/Npc_First/NpcTest.tscn" id="2_1x4nq"]
+[ext_resource type="PackedScene" uid="uid://b7gq5jrj2lhly" path="res://Entities/NpcPlaceholder/NpcTest.tscn" id="2_1x4nq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1x4nq"]
 sky_top_color = Color(0.48410708, 0.41588038, 0.5490812, 1)
@@ -17,34 +17,23 @@ sky = SubResource("Sky_0xm2m")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="TheStation" type="Node3D"]
+[node name="TheStation" type="Node3D" unique_id=1549810234]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1935100847]
 environment = SubResource("Environment_acw6k")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2143012805]
 transform = Transform3D(-0.012217023, -0.8069001, 0.5905616, 0, 0.5906057, 0.8069603, -0.9999254, 0.009858653, -0.0072154435, 0, 0, 0)
 shadow_enabled = true
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.600586, -1.9837255, -0.43026733)
-use_collision = true
-size = Vector3(100, 1.361, 100)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(0.8676501, 0, 0, 0, 0.36452517, 0, 0, 0, 0.8676501, 4.8491597, -0.59233236, 0.6243825)
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1835670858]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.600586, -4.65471, -0.43026733)
 use_collision = true
 collision_mask = 2
-size = Vector3(23.08899, 1.1795211, 18.143509)
+size = Vector3(100, 1.361, 100)
 
-[node name="Player" parent="." instance=ExtResource("1_0rwry")]
+[node name="Player" parent="." unique_id=909302236 instance=ExtResource("1_0rwry")]
 transform = Transform3D(2.0056615, 0, 0, 0, 2.0056615, 0, 0, 0, 2.0056615, 0, 1.9037548, 0)
 
-[node name="Door" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.214017, 1.6288452, 0.78271484)
-
-[node name="POR" type="Marker3D" parent="Door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.4679773)
-
-[node name="NpcTest" parent="." instance=ExtResource("2_1x4nq")]
-transform = Transform3D(2.855, 0, 0, 0, 2.855, 0, 0, 0, 2.855, -6.9067707, 1.251751, -32.3306)
+[node name="Npc" parent="." unique_id=62756061 instance=ExtResource("2_1x4nq")]
+transform = Transform3D(2.855, 0, 0, 0, 2.855, 0, 0, 0, 2.855, 0, 0, 33.84601)

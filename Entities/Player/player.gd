@@ -1,51 +1,95 @@
 extends CharacterBody3D
 
-@export var move_speed := 7.5
-@export var accel := 18.0
-@export var air_accel := 6.0
-@export var friction := 22.0
-
-@export var gravity := 24.0
-@export var jump_height := 1.2
-@export var run_speed := 2.2
-
-@export var coyote_time := 0.12         
+# --- Movement ---
+@export var move_speed      := 4.5      # Slower, heavier feel
+@export var run_speed_mult  := 1.7
+@export var accel           := 14.0
+@export var air_accel       := 4.0
+@export var friction        := 20.0
+@export var gravity         := 28.0
+@export var jump_height     := 0.95     # Lower jumps feel grittier
+@export var coyote_time     := 0.12
 @export var jump_buffer_time := 0.12
 
-@export var mouse_sens := 0.08
+# --- Mouse Look ---
+@export var mouse_sens      := 0.08
+@export var cam_v_min       := -80.0
+@export var cam_v_max       := 75.0
 
-@onready var cam_pivot := $CamPivot
-@onready var cam := $CamPivot/Camera3D
+# --- Head Bob (Puppet Combo style: heavy, rhythmic) ---
+@export var bob_freq_walk   := 1.9      # Steps per second
+@export var bob_freq_run    := 2.8
+@export var bob_amp_y       := 0.055    # Vertical
+@export var bob_amp_x       := 0.025    # Side sway
+@export var bob_lerp        := 8.0      # How fast bob fades in/out
 
-#Checings 
-var isRunning:bool = false
+# --- Camera Effects ---
+@export var tilt_amount     := 3.5      # Roll on strafe
+@export var tilt_lerp       := 7.0
+@export var land_dip        := 0.12     # Camera punch-down on landing
+@export var land_recover    := 6.0
+@export var breathe_amp     := 0.003    # Idle breathing
+@export var breathe_speed   := 0.6
 
-var _coyote_timer := 0.0
-var _jump_buffer_timer := 0.0
+@onready var cam_pivot : Node3D   = $CamPivot
+@onready var cam       : Camera3D = $CamPivot/Camera3D
+@onready var ray = $CamPivot/Camera3D/RayCast3D
 
-func _ready():
+var rayIsColliding = false
+
+var _coyote_timer       := 0.0
+var _jump_buffer_timer  := 0.0
+var _bob_timer          := 0.0
+var _bob_current        := Vector3.ZERO
+var _bob_target         := Vector3.ZERO
+var _was_on_floor       := true
+var _land_dip_current   := 0.0
+var _cam_base_y         := 0.0          # Original cam local Y
+var _breathe_timer      := 0.0
+var _input_dir          := Vector2.ZERO  # Cached for tilt
+
+func is_ray_colliding():
+	if ray.is_colliding():
+		rayIsColliding = true
+		var hit = ray.is_colliding() 
+		print("hit ${hit.name}" )
+
+func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	_cam_base_y = cam.position.y
 
-func _unhandled_input(event):
-	if event is InputEventMouseMotion:
+# ── Always-fires input (fixes the camera stop bug) ─────────────────────────
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
 		cam_pivot.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
-		cam_pivot.rotation.x = clamp(cam_pivot.rotation.x, deg_to_rad(-80), deg_to_rad(80))
+		cam_pivot.rotation.x = clamp(
+			cam_pivot.rotation.x,
+			deg_to_rad(cam_v_min),
+			deg_to_rad(cam_v_max)
+		)
+	# Toggle mouse capture with Escape
+	if event.is_action_pressed("ui_cancel"):
+		Input.mouse_mode = (
+			Input.MOUSE_MODE_VISIBLE
+			if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
+			else Input.MOUSE_MODE_CAPTURED
+		)
+		
+func _process(delta: float) -> void:
+	is_ray_colliding()
 
-func _physics_process(delta):
-	var input_2d := Input.get_vector("move_left", "move_right", "move_back", "move_forward")
-	var forward := -global_transform.basis.z
-	var right := global_transform.basis.x
+func _physics_process(delta: float) -> void:
+	_input_dir = Input.get_vector("move_left", "move_right", "move_back", "move_forward")
 
-	forward.y = 0
-	right.y = 0
-	forward = forward.normalized()
-	right = right.normalized()
-
-	var wish_dir := (right * input_2d.x + forward * input_2d.y)
-	if wish_dir.length() > 0:
+	# --- Wish direction ---
+	var forward := (-global_transform.basis.z * Vector3(1, 0, 1)).normalized()
+	var right   := (global_transform.basis.x  * Vector3(1, 0, 1)).normalized()
+	var wish_dir := (right * _input_dir.x + forward * _input_dir.y)
+	if wish_dir.length_squared() > 0.001:
 		wish_dir = wish_dir.normalized()
 
+	# --- Timers ---
 	if is_on_floor():
 		_coyote_timer = coyote_time
 	else:
@@ -55,37 +99,81 @@ func _physics_process(delta):
 		_jump_buffer_timer = jump_buffer_time
 	else:
 		_jump_buffer_timer = max(0.0, _jump_buffer_timer - delta)
-		
+
+	# --- Speed ---
 	var speed := move_speed
-	
 	if Input.is_action_pressed("run"):
-		speed *= run_speed
+		speed *= run_speed_mult
 
-	var current_h := Vector3(velocity.x, 0, velocity.z)
-	var target_h := wish_dir * speed
-
-
-	var used_accel := accel if is_on_floor() else air_accel
-
-	current_h = current_h.move_toward(target_h, used_accel * delta)
+	# --- Horizontal movement ---
+	var h_vel    := Vector3(velocity.x, 0.0, velocity.z)
+	var h_target := wish_dir * speed
+	var used_acc := accel if is_on_floor() else air_accel
+	h_vel = h_vel.move_toward(h_target, used_acc * delta)
 
 	if is_on_floor() and wish_dir == Vector3.ZERO:
-		current_h = current_h.move_toward(Vector3.ZERO, friction * delta)
+		h_vel = h_vel.move_toward(Vector3.ZERO, friction * delta)
 
-	velocity.x = current_h.x
-	velocity.z = current_h.z
+	velocity.x = h_vel.x
+	velocity.z = h_vel.z
 
-	if not is_on_floor():   
+	# --- Vertical ---
+	if not is_on_floor():
 		velocity.y -= gravity * delta
 	else:
-		
-		if velocity.y < 0:
-			velocity.y = -1.0
+		if velocity.y < 0.0:
+			velocity.y = -2.0   # Keep grounded firmly
 
-	if _jump_buffer_timer > 0 and _coyote_timer > 0:
-		_jump_buffer_timer = 0
-		_coyote_timer = 0
-		# Physics: v = sqrt(2*g*h)
+	# --- Jump ---
+	if _jump_buffer_timer > 0.0 and _coyote_timer > 0.0:
+		_jump_buffer_timer = 0.0
+		_coyote_timer      = 0.0
 		velocity.y = sqrt(2.0 * gravity * jump_height)
 
+	# --- Landing impact ---
+	var just_landed := not _was_on_floor and is_on_floor()
+	if just_landed:
+		_land_dip_current = -land_dip   # Punch cam down
+	_was_on_floor = is_on_floor()
+
 	move_and_slide()
+
+	# --- Camera FX (after move so we have floor state) ---
+	_update_camera_fx(delta, speed)
+
+# ── Camera effects: bob, tilt, landing dip, breathing ───────────────────────
+func _update_camera_fx(delta: float, speed: float) -> void:
+	var is_moving := _input_dir.length_squared() > 0.01 and is_on_floor()
+	var is_running := Input.is_action_pressed("run")
+
+	# Head bob
+	var freq := bob_freq_run if is_running else bob_freq_walk
+	if is_moving:
+		_bob_timer += delta * freq * TAU          # Full cycle in 1/freq seconds
+	# Smoothly zero out bob when idle
+	_bob_target = Vector3.ZERO
+	if is_moving:
+		_bob_target = Vector3(
+			sin(_bob_timer * 0.5) * bob_amp_x,
+			abs(sin(_bob_timer))  * bob_amp_y,
+			0.0
+		)
+	_bob_current = _bob_current.lerp(_bob_target, bob_lerp * delta)
+
+	# Landing dip recovery
+	_land_dip_current = lerp(_land_dip_current, 0.0, land_recover * delta)
+
+	# Breathing (only prominent when still)
+	_breathe_timer += delta * breathe_speed * TAU
+	var breathe_idle: float = 1.0 - clamp(_input_dir.length() * 3.0, 0.0, 1.0)
+	
+	var breathe_y: float = sin(_breathe_timer) * breathe_amp * breathe_idle
+
+	# Apply all to cam local position
+	cam.position.y = _cam_base_y + _bob_current.y + _land_dip_current + breathe_y
+	cam.position.x = _bob_current.x
+
+	# Strafe tilt (roll on the pivot)
+	# _input_dir.x: positive = right strafe → tilt left (negative Z roll)
+	var tilt_target := deg_to_rad(-_input_dir.x * tilt_amount)
+	cam_pivot.rotation.z = lerp(cam_pivot.rotation.z, tilt_target, tilt_lerp * delta)
