@@ -33,7 +33,7 @@ extends CharacterBody3D
 
 @onready var cam_pivot : Node3D   = $CamPivot
 @onready var cam       : Camera3D = $CamPivot/Camera3D
-@onready var ray = $CamPivot/Camera3D/RayCast3
+@onready var ray = $CamPivot/Camera3D/RayCast3D
 @onready var label_crosshair: Label = $CanvasLayer/CenterContainer/VBoxContainer/Label
 
 
@@ -61,10 +61,9 @@ func add_to_inventory(item_id):
 
 func get_raycast_target():
 	if ray.is_colliding():
-		rayIsColliding = true
-		var hit = ray.is_colliding() 
-		print("hit")
-		return hit
+		print("HIT")
+		return ray.get_collider()
+	return null
 		
 func _show_label(label_text):
 	label_crosshair.text = label_text
@@ -75,9 +74,12 @@ func _process_interaction():
 		_show_label(target.get_label())
 		if Input.is_action_just_pressed("interact"):
 			target.interact(self)
+	else:
+		_show_label("")
 
 func _process(delta: float) -> void:
-	get_raycast_target()
+	_process_interaction()
+	
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
