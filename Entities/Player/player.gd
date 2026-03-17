@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 # --- Movement ---
 @export var move_speed      := 4.5      # Slower, heavier feel
-@export var run_speed_mult  := 1.7
+@export var run_speed_mult  := 2.5
 @export var accel           := 14.0
 @export var air_accel       := 4.0
 @export var friction        := 20.0
@@ -22,7 +22,7 @@ extends CharacterBody3D
 @export var bob_amp_y       := 0.055    # Vertical
 @export var bob_amp_x       := 0.025    # Side sway
 @export var bob_lerp        := 8.0      # How fast bob fades in/out
-
+ 
 # --- Camera Effects ---
 @export var tilt_amount     := 3.5      # Roll on strafe
 @export var tilt_lerp       := 7.0
@@ -38,6 +38,7 @@ extends CharacterBody3D
 
 
 var rayIsColliding = false
+var canMove = true
 
 var _coyote_timer       := 0.0
 var _jump_buffer_timer  := 0.0
@@ -61,7 +62,7 @@ func add_to_inventory(item_id):
 
 func get_raycast_target():
 	if ray.is_colliding():
-		print("HIT")
+		#print("HIT")
 		return ray.get_collider()
 	return null
 		
@@ -90,7 +91,6 @@ func _input(event: InputEvent) -> void:
 			deg_to_rad(cam_v_min),
 			deg_to_rad(cam_v_max)
 		)
-	# Toggle mouse capture with Escape
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = (
 			Input.MOUSE_MODE_VISIBLE

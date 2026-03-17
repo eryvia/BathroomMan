@@ -1,5 +1,6 @@
-[gd_scene format=3 uid="uid://b7gq5jrj2lhly"]
+[gd_scene load_steps=6 format=3 uid="uid://b7gq5jrj2lhly"]
 
+[ext_resource type="Script" uid="uid://c0ujrp71t55a3" path="res://Entities/NpcPlaceholder/npc.gd" id="1_3d3xi"]
 [ext_resource type="Shader" uid="uid://bthakur6sv2y0" path="res://Entities/NpcPlaceholder/NpcTest.gdshader" id="1_yrnji"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yrnji"]
@@ -13,25 +14,16 @@ shader_parameter/my_roughness = 0.5
 [sub_resource type="CylinderMesh" id="CylinderMesh_8ovxf"]
 material = SubResource("ShaderMaterial_3d3xi")
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_gew4x"]
-radius = 3.1110716
-
-[node name="Npc" type="StaticBody3D" unique_id=62756061]
+[node name="Npc" type="StaticBody3D"]
 transform = Transform3D(2.855, 0, 0, 0, 2.855, 0, 0, 0, 2.855, 0, 0, 0)
 collision_layer = 4
 collision_mask = 2
+script = ExtResource("1_3d3xi")
 
-[node name="Collision" type="CollisionShape3D" parent="." unique_id=381294682]
+[node name="Collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0.04446686, 0)
 shape = SubResource("CylinderShape3D_yrnji")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=495249014]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 layers = 4
 mesh = SubResource("CylinderMesh_8ovxf")
-
-[node name="Area3D" type="Area3D" parent="." unique_id=817875199]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=434058066]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27225685, 0)
-shape = SubResource("SphereShape3D_gew4x")
-debug_color = Color(0.3664527, 0.4852804, 0.98353904, 0.41960785)

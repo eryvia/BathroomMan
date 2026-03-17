@@ -1,6 +1,7 @@
 class_name Interactable
 extends Node3D
 
+var name_index: String
 var interaction_label: String = "Interact"
 var is_enabled: bool = true
 

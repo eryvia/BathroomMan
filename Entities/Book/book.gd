@@ -3,7 +3,7 @@ extends Interactable
 
 @export var item_id: String
 var label_index := 0
-var labels = ["hello", "newHello","pick up"]
+var labels = ["just a old book", "probably filled with random bs","pick up"]
 
 
 func _ready():

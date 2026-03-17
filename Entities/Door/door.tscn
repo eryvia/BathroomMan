@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqbq7lalf4yi"]
+
+[ext_resource type="Script" uid="uid://2ykbji6n10xf" path="res://Entities/Door/door.gd" id="1_v1o5j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v1o5j"]
+size = Vector3(0.41041565, 0.96336365, 0.10394287)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v1o5j"]
+
+[node name="Door" type="RigidBody3D"]
+script = ExtResource("1_v1o5j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0010827482, 0.01866275, -0.019622803)
+shape = SubResource("BoxShape3D_v1o5j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4182052, 0, 0, 0, 0.9800517, 0, 0, 0, 0.09895046, 0, 0, 0)
+mesh = SubResource("BoxMesh_v1o5j")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20409104, 0, 0)
