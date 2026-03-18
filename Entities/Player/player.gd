@@ -105,6 +105,8 @@ func release_camera() -> void:
 	_camera_locked = false
 
 func _input(event: InputEvent) -> void:
+	if _camera_locked:
+		return
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
 		cam_pivot.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
@@ -121,9 +123,9 @@ func _input(event: InputEvent) -> void:
 		)
 		
 func _physics_process(delta: float) -> void:
-	
 	if _camera_locked:
 		return
+	
 	_input_dir = Input.get_vector("move_left", "move_right", "move_back", "move_forward")
 
 	# --- Wish direction ---
@@ -187,6 +189,8 @@ func _physics_process(delta: float) -> void:
 
 # ── Camera effects: bob, tilt, landing dip, breathing ───────────────────────
 func _update_camera_fx(delta: float, speed: float) -> void:
+	if _camera_locked == true: 
+		return
 	var is_moving := _input_dir.length_squared() > 0.01 and is_on_floor()
 	var is_running := Input.is_action_pressed("run")
 
