@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 signal dialogue_ended
 
