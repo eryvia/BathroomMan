@@ -8,6 +8,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8eprd"]
 render_priority = 0
 shader = ExtResource("2_uovl0")
+shader_parameter/outline_width = 0.02
+shader_parameter/outline_color = Color(1, 1, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_t4nii"]
 material = SubResource("ShaderMaterial_8eprd")
