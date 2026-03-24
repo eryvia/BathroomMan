@@ -10,6 +10,7 @@ extends CharacterBody3D
 @export var jump_height     := 0.95     # Lower jumps feel grittier
 @export var coyote_time     := 0.12
 @export var jump_buffer_time := 0.12
+@export var crouch_buffer_time  := 0.23
 
 # --- Mouse Look ---
 @export var mouse_sens      := 0.08
@@ -46,6 +47,7 @@ var _original_basis: Basis
 
 var _coyote_timer       := 0.0
 var _jump_buffer_timer  := 0.0
+var _crouch_buffer_timer  := 0.0
 var _bob_timer          := 0.0
 var _bob_current        := Vector3.ZERO
 var _bob_target         := Vector3.ZERO
@@ -149,6 +151,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		_jump_buffer_timer = max(0.0, _jump_buffer_timer - delta)
 
+	if Input.is_action_just_pressed("crouch"):
+		_crouch_buffer_timer = crouch_buffer_time
+	else: 
+		_crouch_buffer_timer = max(0.0, _crouch_buffer_timer - delta)
+		
 	# --- Speed ---
 	var speed := move_speed
 	if Input.is_action_pressed("run"):
@@ -179,6 +186,10 @@ func _physics_process(delta: float) -> void:
 		_coyote_timer      = 0.0
 		velocity.y = sqrt(2.0 * gravity * jump_height)
 
+	if _crouch_buffer_timer > 0.0:
+		pass
+		
+		
 	# --- Landing impact ---
 	var just_landed := not _was_on_floor and is_on_floor()
 	if just_landed:

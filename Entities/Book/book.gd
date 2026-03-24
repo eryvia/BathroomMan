@@ -18,3 +18,6 @@ func interact(player) -> void:
 
 func get_label() -> String:
 	return labels[label_index]
+
+func reset_label() -> void:
+	label_index = 0
