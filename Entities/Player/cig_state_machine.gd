@@ -1,3 +1,4 @@
+extends Node
 # action_state_machine.gd
 enum ActionState { IDLE, LIGHTING, SMOKING, PUTTING_OUT }
 
@@ -33,6 +34,11 @@ func _transition_to(new_state: ActionState):
 	_on_enter_state(new_state)
 
 func _on_enter_state(state: ActionState):
+	pass
+
+
+"""
+func _on_enter_state(state: ActionState):
 	match state:
 		ActionState.LIGHTING:
 			$AnimationPlayer.play("lighting_cigarette")
@@ -42,3 +48,5 @@ func _on_enter_state(state: ActionState):
 			$AnimationPlayer.play("putting_out")
 		ActionState.IDLE:
 			$AnimationPlayer.play("idle")
+			
+"""

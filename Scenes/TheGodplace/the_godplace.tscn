@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://67oyvsvcx0mh"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_m2yhx"]
-
-[node name="TheGodplace" type="Node3D"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(3.45, 0, 0, 0, 0.068152234, 0, 0, 0, 3.45, 0, 0, 0)
-mesh = SubResource("CylinderMesh_m2yhx")
