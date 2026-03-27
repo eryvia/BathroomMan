@@ -57,14 +57,23 @@ offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Hour" type="Label" parent="CanvasLayer" unique_id=1953250017]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1046168004]
 anchors_preset = -1
+anchor_left = 0.61700004
 anchor_right = 1.0
-anchor_bottom = 0.34500003
-offset_left = 1626.0
-offset_top = 28.0
-offset_right = -56.0
-offset_bottom = -184.00003
+anchor_bottom = 0.201
+offset_left = 8.359863
+offset_right = -6.0
+offset_bottom = -5.200012
+
+[node name="Day" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1928255019]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Day 1: res"
+horizontal_alignment = 2
+
+[node name="Hour" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1953250017]
+layout_mode = 2
 theme_override_font_sizes/font_size = 128
 text = "32"
 horizontal_alignment = 2

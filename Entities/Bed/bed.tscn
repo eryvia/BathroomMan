@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://xdlyqagl0ynb"]
+
+[ext_resource type="Script" uid="uid://cq7fm1cudey7i" path="res://Entities/Bed/bed.gd" id="1_xade6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xade6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xade6"]
+
+[node name="Bed" type="StaticBody3D" unique_id=252370658]
+script = ExtResource("1_xade6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=244500638]
+transform = Transform3D(3.2654433, 0, 0, 0, 0.09072149, 0, 0, 0, 1.7618783, 0, 0, 0)
+mesh = SubResource("BoxMesh_xade6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1523145665]
+transform = Transform3D(1.23, 0, 0, 0, 1.23, 0, 0, 0, 1.23, 0, 0, 0)
+shape = SubResource("BoxShape3D_xade6")

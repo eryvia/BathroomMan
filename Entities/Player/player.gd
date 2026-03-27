@@ -69,6 +69,9 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	_cam_base_y = cam.position.y
 	
+func _display() -> void: 
+	pass
+	
 func add_to_inventory(item_id):
 	Items.append(item_id)
 

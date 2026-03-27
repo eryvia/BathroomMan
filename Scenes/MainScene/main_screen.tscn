@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://b8780oyfdvnig"]
+
+[ext_resource type="Script" uid="uid://dorhen8df163h" path="res://Scenes/MainScene/main_screen.gd" id="1_quctp"]
+
+[node name="MainScreen" type="Control" unique_id=67232688]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_quctp")
+
+[node name="Panel" type="Panel" parent="." unique_id=908428294]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=902766503]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.21200001
+anchor_top = 0.5
+anchor_right = 0.82100004
+anchor_bottom = 0.99600005
+offset_left = 3.959961
+offset_top = -23.0
+offset_right = 0.67993164
+offset_bottom = -0.20007324
+
+[node name="NewGame" type="Label" parent="Panel/VBoxContainer" unique_id=1592371480]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "NEW GAME"
+horizontal_alignment = 1
+
+[node name="LoadGame" type="Label" parent="Panel/VBoxContainer" unique_id=552601849]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "LOAD GAME
+"
+horizontal_alignment = 1
+
+[node name="Options" type="Label" parent="Panel/VBoxContainer" unique_id=315632087]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "OPTIONS
+
+
+"
+horizontal_alignment = 1
+
+[node name="Quit" type="Label" parent="Panel/VBoxContainer" unique_id=1865789763]
+layout_mode = 2
+theme_override_font_sizes/font_size = 31
+text = "QUIT
+
+
+
+
+"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="Panel" unique_id=1453265938]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 0.25300002
+offset_right = -1.0
+offset_bottom = 0.39996338
+
+[node name="Label" type="Label" parent="Panel/Control" unique_id=1118924033]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.125
+anchor_top = 0.35500002
+anchor_right = 0.92100006
+anchor_bottom = 1.151
+offset_left = 0.125
+offset_top = 0.0799942
+offset_right = 0.6008301
+offset_bottom = 0.0960083
+theme_override_font_sizes/font_size = 128
+text = "BATHROOM MAN"
+horizontal_alignment = 1
+vertical_alignment = 1

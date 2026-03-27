@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cyxrnj7qijt5c" path="res://Entities/Player/Player.tscn" id="1_o30ac"]
 [ext_resource type="PackedScene" uid="uid://b7gq5jrj2lhly" path="res://Entities/NpcPlaceholder/npc.tscn" id="2_27rwc"]
 [ext_resource type="PackedScene" uid="uid://duhe8oduhwh5j" path="res://Entities/Book/book.tscn" id="3_0awwi"]
-[ext_resource type="PackedScene" uid="uid://byiv2e35kqy7w" path="res://Entities/Mirror/Mirror.tscn" id="4_7sk3c"]
+[ext_resource type="PackedScene" uid="uid://byiv2e35kqy7w" path="res://Entities/Mirror/mirror.tscn" id="4_7sk3c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1x4nq"]
 sky_top_color = Color(0.48410708, 0.41588038, 0.5490812, 1)
@@ -18,6 +18,8 @@ background_mode = 2
 sky = SubResource("Sky_0xm2m")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_o30ac"]
 
 [node name="Bathroom" type="Node3D" unique_id=481294560]
 
@@ -45,3 +47,7 @@ transform = Transform3D(0.41218233, -0.9111014, 0, 0.9111014, 0.41218233, 0, 0, 
 
 [node name="Mirror" parent="." unique_id=501307195 instance=ExtResource("4_7sk3c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.789644, -2.0722675, 2.371523)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=1129930711]
+transform = Transform3D(1, 0, 0, 0, 20.556059, 0, 0, 0, 50.271824, -10.600153, 5.044729, 0.55792236)
+mesh = SubResource("BoxMesh_o30ac")
