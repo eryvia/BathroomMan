@@ -2,24 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdfl525oymotg"
-path.s3tc="res://.godot/imported/trash_and_debris_10.png-e6ef6b2ab6e547841c87134e0877452e.s3tc.ctex"
+uid="uid://bxsassvucj2nr"
+path="res://.godot/imported/Inquistion_Abu_Ghraib_torture_graphic_750x500.webp-ad9fa22687a3237725565e3d15fe6cce.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
-generator_parameters={
-"md5": "00ad74863f0a9b36661d5c347e4d1da5"
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/trash_and_debris_10.png"
-dest_files=["res://.godot/imported/trash_and_debris_10.png-e6ef6b2ab6e547841c87134e0877452e.s3tc.ctex"]
+source_file="res://Inquistion_Abu_Ghraib_torture_graphic_750x500.webp"
+dest_files=["res://.godot/imported/Inquistion_Abu_Ghraib_torture_graphic_750x500.webp-ad9fa22687a3237725565e3d15fe6cce.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -27,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -41,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

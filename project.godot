@@ -25,11 +25,13 @@ config/icon="res://icon.svg"
 SignalBus="*res://Utilities/signal_bus.gd"
 Global="*res://Utilities/Global.gd"
 DialogueManager="*res://Interface/DialogueManager/dialogue_manager.tscn"
+ReadingManager="*uid://coetcaha6uut6"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1200
+window/size/viewport_width=640
+window/size/viewport_height=320
+window/size/mode=2
 
 [file_customization]
 
@@ -39,6 +41,10 @@ folder_colors={
 "res://Scenes/": "teal",
 "res://Utilities/": "blue"
 }
+
+[filesystem]
+
+import/blender/enabled=false
 
 [input]
 

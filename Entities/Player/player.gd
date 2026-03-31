@@ -43,6 +43,8 @@ extends CharacterBody3D
 var raycast_marker: Marker3D
 var current_target = null 
 
+var isPlayerStoppedOverControl = false
+var isPlayerStopped = false
 var rayIsColliding = false
 var dialogueState = false
 var _camera_locked := false
@@ -63,6 +65,19 @@ var _breathe_timer      := 0.0
 var _input_dir          := Vector2.ZERO  # Cached for tilt
 
 var Items = []
+
+func _put_player_to_stop() -> void:
+	isPlayerStopped = true
+	pass
+	
+func realese_movement() -> void:
+	if isPlayerStopped:
+		isPlayerStopped = false
+	pass
+	
+func check_movement_checkings():
+	if isPlayerStopped || _camera_locked:
+		return true
 
 func _ready() -> void:
 	DialogueManager.dialogue_ended.connect(release_camera)
@@ -107,6 +122,7 @@ func _process(delta: float) -> void:
 	_process_interaction()
 	
 func focus_camera_on(marker: Marker3D) -> void:
+	
 	_camera_locked = true
 	_original_basis = cam.global_basis
 
@@ -124,8 +140,9 @@ func release_camera() -> void:
 	_camera_locked = false
 
 func _input(event: InputEvent) -> void:
-	if _camera_locked:
+	if check_movement_checkings():
 		return
+		
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
 		cam_pivot.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
@@ -144,10 +161,11 @@ func _input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("end"):
 		release_camera() 
+		realese_movement()
 	
-	if _camera_locked:
+	if check_movement_checkings():
 		return
-	
+		
 	_input_dir = Input.get_vector("move_left", "move_right", "move_back", "move_forward")
 
 	# --- Wish direction ---
@@ -223,7 +241,7 @@ func _physics_process(delta: float) -> void:
 
 # ── Camera effects: bob, tilt, landing dip, breathing ───────────────────────
 func _update_camera_fx(delta: float, speed: float) -> void:
-	if _camera_locked == true: 
+	if check_movement_checkings():
 		return
 	var is_moving := _input_dir.length_squared() > 0.01 and is_on_floor()
 	var is_running := Input.is_action_pressed("run")

@@ -16,6 +16,7 @@ var days = {
 	6 : "thidw",
 }
 var current_day = 1
+var current_hour = 0
 
 func advance_day(days):
 	current_day = days[current_day + 1]

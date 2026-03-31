@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b7pxw8rfpuk6d"]
+
+[ext_resource type="Script" uid="uid://b1s0pikss0h7r" path="res://Entities/Note/note.gd" id="1_xrbtp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0vj57"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xrbtp"]
+radius = 1.4703724
+
+[node name="Note" type="StaticBody3D" unique_id=61981490]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_xrbtp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=383045136]
+transform = Transform3D(1.875931, 0, 0, 0, 0.055096865, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_0vj57")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2071561752]
+shape = SubResource("SphereShape3D_xrbtp")

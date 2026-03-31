@@ -2,6 +2,7 @@ class_name Mirror
 extends Interactable
 
 @onready var mirror_marker = $Mark
+@onready var camera_redirect = $SubViewport/Camera3D
 
 func _ready():
 	interaction_label = "See yourself"

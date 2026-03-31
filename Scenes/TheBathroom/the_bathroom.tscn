@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cyxrnj7qijt5c" path="res://Entities/Player/Player.tscn" id="1_o30ac"]
 [ext_resource type="PackedScene" uid="uid://b7gq5jrj2lhly" path="res://Entities/NpcPlaceholder/npc.tscn" id="2_27rwc"]
 [ext_resource type="PackedScene" uid="uid://duhe8oduhwh5j" path="res://Entities/Book/book.tscn" id="3_0awwi"]
-[ext_resource type="PackedScene" uid="uid://byiv2e35kqy7w" path="res://Entities/Mirror/mirror.tscn" id="4_7sk3c"]
+[ext_resource type="PackedScene" uid="uid://byiv2e35kqy7w" path="res://Entities/Mirror/Mirror.tscn" id="4_7sk3c"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1x4nq"]
 sky_top_color = Color(0.48410708, 0.41588038, 0.5490812, 1)
@@ -31,7 +31,7 @@ transform = Transform3D(-0.012217023, -0.8069001, 0.5905616, 0, 0.5906057, 0.806
 shadow_enabled = true
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1198733593]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.600586, -4.65471, -0.43026733)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.629717, -4.6636405, -0.44062185)
 use_collision = true
 collision_mask = 2
 size = Vector3(100, 1.361, 100)
