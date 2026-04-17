@@ -24,7 +24,7 @@ anchor_bottom = 0.966
 offset_right = 0.14996338
 offset_bottom = -0.0920105
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel" unique_id=1268079197]
+[node name="Cont" type="ScrollContainer" parent="Panel" unique_id=1268079197]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.062000003
@@ -36,7 +36,7 @@ offset_top = -0.023000717
 offset_right = 0.1920166
 offset_bottom = -0.06201172
 
-[node name="Label" type="Label" parent="Panel/ScrollContainer" unique_id=99757965]
+[node name="Label" type="Label" parent="Panel/Cont" unique_id=99757965]
 layout_mode = 2
 text = "dawdadwwaddwda
 dw

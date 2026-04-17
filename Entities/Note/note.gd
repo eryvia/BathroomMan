@@ -4,10 +4,10 @@ extends Interactable
 @export var item_id: String
 var label_index := 0
 var labels = ["old note","read"]
-var text = ["just old sayings", "dwad", "nawdndwaaddddddddddddddddddddddddddddddddddddddd"]
+var text := "yap"
 
 func _ready():
-	interaction_label = "Pick up"
+	#interaction_label = "Pick up"
 	is_enabled = true
 
 func interact(player) -> void:
